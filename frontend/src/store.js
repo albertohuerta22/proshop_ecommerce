@@ -1,14 +1,13 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { combineReducers, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { configureStore, createSlice } from '@reduxjs/toolkit';
+// import { combineReducers, applyMiddleware } from 'redux';
+// import thunk from 'redux-thunk';
+// import { composeWithDevTools } from 'redux-devtools-extension';
 
-let reducer = combineReducers({});
-const initialState = {};
+const preloadedState = {};
 
 const store = configureStore({
   reducer: {},
-  initialState,
+  preloadedState,
 });
 
 export default store;
