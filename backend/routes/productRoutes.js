@@ -12,6 +12,7 @@ router.get(
   asyncHandler(async (req, res) => {
     // mongoose middle ware express async handler
     const products = await Product.find({}); // mongoose func returns promise
+
     res.json(products);
   })
 );
