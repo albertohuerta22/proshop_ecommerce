@@ -1,4 +1,5 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { productListReducer } from './reducers/productReducer';
 // import { combineReducers, applyMiddleware } from 'redux';
 // import thunk from 'redux-thunk';
 // import { composeWithDevTools } from 'redux-devtools-extension';
@@ -6,7 +7,9 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 const preloadedState = {};
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    productList: productListReducer,
+  },
   preloadedState,
 });
 
