@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { navigate, useNavigate } from 'react-router';
 import { Link, useParams } from 'react-router-dom';
 import {
   Row,
@@ -21,6 +22,7 @@ const ProductScreen = () => {
   const [qty, setQty] = useState(0);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
@@ -29,6 +31,10 @@ const ProductScreen = () => {
   useEffect(() => {
     dispatch(listProductsDetails(params.id));
   }, [dispatch]);
+
+  const addToCartHandler = () => {
+    navigate(`/cart/${params.id}?qty=${qty}`);
+  };
 
   return (
     <>
@@ -86,7 +92,7 @@ const ProductScreen = () => {
                         <Form.Control
                           as="select"
                           value={qty}
-                          onChange={(e) => setQty(e.traget.value)}
+                          onChange={(e) => setQty(e.target.value)}
                         >
                           {[...Array(product.countInStock).keys()].map((x) => (
                             <option key={x + 1} value={x + 1}>
@@ -101,6 +107,7 @@ const ProductScreen = () => {
 
                 <ListGroup.Item>
                   <Button
+                    onClick={addToCartHandler}
                     className="w-100"
                     type="button"
                     disabled={product.countInStock === 0}
