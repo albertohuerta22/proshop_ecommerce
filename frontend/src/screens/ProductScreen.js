@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { navigate, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { Link, useParams } from 'react-router-dom';
 import {
   Row,
@@ -19,7 +19,7 @@ import Rating from '../components/Rating';
 import { listProductsDetails } from '../action/productAction';
 
 const ProductScreen = () => {
-  const [qty, setQty] = useState(0);
+  const [qty, setQty] = useState(1);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
