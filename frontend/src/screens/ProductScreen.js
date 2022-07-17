@@ -17,6 +17,7 @@ import Message from '../components/Message';
 import Rating from '../components/Rating';
 
 import { listProductsDetails } from '../action/productAction';
+import { addToCart } from '../action/cartAction';
 
 const ProductScreen = () => {
   const [qty, setQty] = useState(1);
@@ -33,7 +34,8 @@ const ProductScreen = () => {
   }, [dispatch]);
 
   const addToCartHandler = () => {
-    navigate(`/cart/${params.id}?qty=${qty}`);
+    dispatch(addToCart(product._id, qty));
+    navigate(`/cart`);
   };
 
   return (
