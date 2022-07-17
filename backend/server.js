@@ -6,6 +6,7 @@ import colors from 'colors';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 import productsRoutes from './routes/productRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 dotenv.config();
 
@@ -13,11 +14,14 @@ connectDB();
 
 const app = express();
 
+app.use(express.json());
+
 app.get('/', (req, res) => {
   res.send('API is running....');
 });
 // mount our route
 app.use('/api/products', productsRoutes);
+app.use('/api/users', userRoutes);
 
 //error handling
 app.use(notFound); //something that doesnt exist
