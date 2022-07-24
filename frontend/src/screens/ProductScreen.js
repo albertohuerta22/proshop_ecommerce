@@ -27,11 +27,13 @@ const ProductScreen = () => {
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
+  console.log(product);
 
   const params = useParams(); // react router dom v6 update / do not use match.params
+
   useEffect(() => {
     dispatch(listProductsDetails(params.id));
-  }, [dispatch]);
+  }, [dispatch, params.id]);
 
   const addToCartHandler = () => {
     dispatch(addToCart(product._id, qty));

@@ -16,10 +16,10 @@ function App() {
         <Containter>
           <Routes>
             <Route path="/" element={<HomeScreen />} exact />
-            <Route path="/login" element={<LoginScreen />} />
             <Route path="/product/:id" element={<ProductScreen />} />
             <Route path="/cart/:id" element={<CartScreen />} />
             <Route path="/cart" element={<CartScreen />} />
+            <Route path="/login" element={<LoginScreen />} exact />
           </Routes>
         </Containter>
       </main>

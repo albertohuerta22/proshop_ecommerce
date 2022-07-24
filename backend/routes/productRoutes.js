@@ -14,6 +14,6 @@ router.route('/').get(getProducts);
 //@description  Fetch single product
 //@route  GET /api/products/:id
 //@access PUBLIC
-router.route('/').get(getProductById);
+router.route('/:id').get(getProductById);
 
 export default router;
