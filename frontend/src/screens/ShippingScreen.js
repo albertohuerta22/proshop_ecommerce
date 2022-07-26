@@ -35,7 +35,7 @@ const ShippingScreen = () => {
             type="text"
             placeholder="Enter address"
             value={address}
-            erquired
+            required
             onChange={(e) => setAddress(e.target.value)}
           ></Form.Control>
         </Form.Group>
@@ -45,7 +45,7 @@ const ShippingScreen = () => {
             type="text"
             placeholder="Enter city"
             value={city}
-            erquired
+            required
             onChange={(e) => setCity(e.target.value)}
           ></Form.Control>
         </Form.Group>
@@ -55,17 +55,17 @@ const ShippingScreen = () => {
             type="text"
             placeholder="Enter Postal Code"
             value={postalCode}
-            erquired
+            required
             onChange={(e) => setPostalCode(e.target.value)}
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId="country">
-          <Form.Label>Postal Code</Form.Label>
+          <Form.Label>Country</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter Country"
             value={country}
-            erquired
+            required
             onChange={(e) => setCountry(e.target.value)}
           ></Form.Control>
         </Form.Group>
