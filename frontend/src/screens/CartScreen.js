@@ -42,8 +42,6 @@ const CartScreen = () => {
     navigate(`/login?redirect=${'/shipping'}`);
   };
 
-  console.log(cartItems.length);
-
   return (
     <Row>
       <Col md={8}>
