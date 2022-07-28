@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { Link, useParams, useLocation } from 'react-router-dom';
+import { Link, useParams, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
+
 import {
   Row,
   Col,
@@ -16,26 +16,28 @@ import { addToCart, removeFromCart } from '../action/cartAction';
 
 const CartScreen = () => {
   const params = useParams();
+  const { id } = params;
+  const productId = id;
+  const quantity = useLocation();
+
   const navigate = useNavigate();
-  const location = useLocation();
+
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart);
 
   const { cartItems } = cart;
 
-  const productId = params.id;
-  const qty = new URLSearchParams(location.search).get('qty');
+  const qty = quantity.search ? Number(quantity.search.split('='[1])) : 1;
 
   useEffect(() => {
     if (productId) {
-      dispatch(addToCart(productId));
+      dispatch(addToCart(productId, qty));
     }
   }, [dispatch, productId, qty]);
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
-    navigate('/cart');
   };
 
   const checkoutHandler = () => {

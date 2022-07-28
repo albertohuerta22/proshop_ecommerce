@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
   productDetailsReducer,
   productListReducer,
@@ -10,6 +10,16 @@ import {
   userDetailsReducer,
   userUpdateProfileReducer,
 } from './reducers/userReducer';
+
+const reducer = combineReducers({
+  productDetails: productDetailsReducer,
+  productList: productListReducer,
+  cart: cartReducer,
+  userLogin: userLoginReducer,
+  userRegister: userRegisterReducer,
+  userDetails: userDetailsReducer,
+  userUpdateProfile: userUpdateProfileReducer,
+});
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
@@ -31,16 +41,8 @@ const initialState = {
 };
 
 const store = configureStore({
-  reducer: {
-    productList: productListReducer,
-    productDetails: productDetailsReducer,
-    cart: cartReducer,
-    userLogin: userLoginReducer,
-    userRegister: userRegisterReducer,
-    userDetails: userDetailsReducer,
-    userUpdateProfile: userUpdateProfileReducer,
-  },
   initialState,
+  reducer,
 });
 
 export default store;

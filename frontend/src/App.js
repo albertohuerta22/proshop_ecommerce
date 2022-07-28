@@ -20,13 +20,13 @@ function App() {
       <main className="py-3">
         <Containter>
           <Routes>
-            <Route path="/" element={<HomeScreen />} exact />
+            <Route path="/" element={<HomeScreen />} />
             <Route path="/product/:id" element={<ProductScreen />} />
             <Route path="/cart/:id" element={<CartScreen />} />
             <Route path="/cart" element={<CartScreen />} />
-            <Route path="/login" element={<LoginScreen />} exact />
-            <Route path="/register" element={<RegisterScreen />} exact />
-            <Route path="/profile" element={<ProfileScreen />} exact />
+            <Route path="/login" element={<LoginScreen />} />
+            <Route path="/register" element={<RegisterScreen />} />
+            <Route path="/profile" element={<ProfileScreen />} />
             <Route path="/shipping" element={<ShippingScreen />} />
             <Route path="/payment" element={<PaymentScreen />} />
             <Route path="/placeorder" element={<PlaceOrderScreen />} />
