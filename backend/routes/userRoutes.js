@@ -18,3 +18,15 @@ router
   .put(protect, updateUserProfile);
 
 export default router;
+
+// vhi.ie
+// register
+// 50 - 70 euros ; policy can claim 75
+
+// mri to
+// mater private norhter cross
+//  cherry wood south
+// affidea clinics
+// dondrum south
+
+// 150 - 300, claim 130 back...
