@@ -1,5 +1,5 @@
 import React from 'react';
-import propTypes from 'prop-types';
+// import propTypes from 'prop-types';
 
 const Rating = ({ value, text, color }) => {
   // console.log(props); props are text, value, color from product component

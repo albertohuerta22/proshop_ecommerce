@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
@@ -11,7 +11,7 @@ import { PayPalButton } from 'react-paypal-button-v2';
 
 const OrderScreen = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   const params = useParams();
 
   const [sdkReady, setSdkReady] = useState(false);
