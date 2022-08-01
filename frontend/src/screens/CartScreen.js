@@ -16,8 +16,8 @@ import { addToCart, removeFromCart } from '../action/cartAction';
 
 const CartScreen = () => {
   const params = useParams();
-  const { id } = params;
-  const productId = id;
+
+  const productId = params.id;
   const quantity = useLocation();
 
   const navigate = useNavigate();
@@ -25,8 +25,11 @@ const CartScreen = () => {
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart);
-
   const { cartItems } = cart;
+
+  const productDetails = useSelector((state) => state.productDetails);
+  const { product } = productDetails;
+  // can i use instead of productId??
 
   const qty = quantity.search ? Number(quantity.search.split('='[1])) : 1;
 
