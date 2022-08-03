@@ -27,8 +27,8 @@ const CartScreen = () => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-  const productDetails = useSelector((state) => state.productDetails);
-  const { product } = productDetails;
+  // const productDetails = useSelector((state) => state.productDetails);
+  // const { product } = productDetails;
   // can i use instead of productId??
 
   const qty = quantity.search ? Number(quantity.search.split('='[1])) : 1;

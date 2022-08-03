@@ -68,7 +68,15 @@ const OrderScreen = () => {
     }
 
     // addPayPalScript();
-  }, [dispatch, orderId, successPay, order, successDeliver]);
+  }, [
+    dispatch,
+    navigate,
+    userInfo,
+    orderId,
+    successPay,
+    order,
+    successDeliver,
+  ]);
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult);
