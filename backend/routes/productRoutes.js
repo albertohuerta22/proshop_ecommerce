@@ -6,6 +6,7 @@ import {
   createProduct,
   updateProduct,
   createProductReview,
+  getTopProducts,
 } from '../controllers/productControllers.js';
 import { protect, admin } from '../middleware/authMiddleware.js';
 
@@ -16,6 +17,7 @@ const router = express.Router();
 //@access PUBLIC
 router.route('/').get(getProducts).post(protect, admin, createProduct);
 router.route('/:id/reviews').post(protect, createProductReview);
+router.get('/top', getTopProducts);
 
 //@description  Fetch single product
 //@route  GET /api/products/:id
