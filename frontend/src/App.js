@@ -26,6 +26,10 @@ function App() {
       <main className="py-3">
         <Containter>
           <Routes>
+            <Route path="/cart">
+              <Route path=":id" element={<CartScreen />} />
+              <Route path="" element={<CartScreen />} />
+            </Route>
             <Route path="/search/:keyword" element={<HomeScreen />} exact />
             <Route path="/" element={<HomeScreen />} />
             <Route path="/page/:pageNumber" element={<HomeScreen />} exact />
@@ -34,8 +38,6 @@ function App() {
               element={<HomeScreen />}
             />
             <Route path="/product/:id" element={<ProductScreen />} />
-            <Route path="/cart/:id" element={<CartScreen />} />
-            <Route path="/cart" element={<CartScreen />} />
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/register" element={<RegisterScreen />} />
             <Route path="/profile" element={<ProfileScreen />} />

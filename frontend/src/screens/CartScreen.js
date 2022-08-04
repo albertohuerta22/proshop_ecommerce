@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -14,26 +14,33 @@ import {
 import Message from '../components/Message';
 import { addToCart, removeFromCart } from '../action/cartAction';
 
-const CartScreen = () => {
+const CartScreen = (props) => {
+  const [cartItems, setCartItems] = useState([]);
   const params = useParams();
 
   const productId = params.id;
-  const quantity = useLocation();
-
+  console.log();
   const navigate = useNavigate();
+  const { search } = useLocation();
 
   const dispatch = useDispatch();
 
-  const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
+  // const cart = useSelector((state) => state.cart);
+  // const { cartItems } = cart;
 
-  const qty = quantity.search ? Number(quantity.search.split('='[1])) : 1;
+  // console.log(cart);
+  const sp = new URLSearchParams(search); // /search?category=Shirts=
+  const qty = sp.get('qty') || 0;
 
   useEffect(() => {
-    if (productId) {
-      dispatch(addToCart(productId, qty));
+    const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    if (cartItems) {
+      setCartItems(cartItems);
     }
-  }, [dispatch, productId, qty]);
+    // if (productId) {
+    //   dispatch(addToCart(productId, qty));
+    // }
+  }, [dispatch, productId, qty, cartItems]);
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
