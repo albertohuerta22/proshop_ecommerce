@@ -69,8 +69,6 @@ const ProductScreen = () => {
     );
   };
 
-  console.log(product._id, qty);
-
   return (
     <>
       <Link className="btn btn-light my-3" to="/">

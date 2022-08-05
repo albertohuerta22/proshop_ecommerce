@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { useNavigate } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import SearchBox from './SearchBox';
@@ -9,12 +9,27 @@ import { logout } from '../action/userAction';
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userInfoStorage = localStorage.getItem('userInfo')
+    ? JSON.parse(localStorage.getItem('userInfo'))
+    : null;
+  const [userInfo, setUserInfo] = useState(userInfoStorage);
+  // const userLogin = useSelector((state) => state.userLogin);
+  // const { userInfo } = userLogin;
+
+  useEffect(() => {
+    if (!userInfoStorage) {
+      setUserInfo(null);
+      // navigate('/');
+    }
+  }, [navigate, setUserInfo, userInfoStorage]);
 
   const logoutHandler = () => {
+    localStorage.removeItem('userInfo');
+    // setUserInfo(null);
     dispatch(logout());
+    navigate('/');
   };
 
   return (

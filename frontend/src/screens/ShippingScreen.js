@@ -7,8 +7,15 @@ import { saveShippingAddress } from '../action/cartAction';
 import CheckoutSteps from '../components/CheckoutSteps';
 
 const ShippingScreen = () => {
-  const cart = useSelector((state) => state.cart);
-  const { shippingAddress } = cart;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // const cart = useSelector((state) => state.cart);
+  // const { shippingAddress } = cart;
+
+  const shippingAddress = localStorage.getItem('shippingAddress')
+    ? JSON.parse(localStorage.getItem('shippingAddress'))
+    : {};
 
   const [address, setAddress] = useState(shippingAddress.address || '');
   const [city, setCity] = useState(shippingAddress.city || '');
@@ -16,9 +23,6 @@ const ShippingScreen = () => {
     shippingAddress.postalCode || ''
   );
   const [country, setCountry] = useState(shippingAddress.country || '');
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();

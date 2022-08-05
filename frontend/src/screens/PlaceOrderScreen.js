@@ -10,7 +10,16 @@ const PlaceOrderScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const cart = useSelector((state) => state.cart);
+  // const cart = useSelector((state) => state.cart);
+
+  const cart = localStorage.getItem('cartItems')
+    ? JSON.parse(localStorage.getItem('cartItems'))
+    : {};
+
+  const shippingAddress = localStorage.getItem('shippingAddress')
+    ? JSON.parse(localStorage.getItem('shippingAddress'))
+    : {};
+
   const orderCart = {};
 
   const addDecimal = (num) => {
@@ -18,7 +27,7 @@ const PlaceOrderScreen = () => {
   };
   //calculate prices
   orderCart.itemsPrice = addDecimal(
-    cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+    cart.reduce((acc, item) => acc + item.price * item.qty, 0)
   );
   orderCart.shippingPrice = addDecimal(orderCart.itemsPrice < 100 ? 0 : 100);
 
@@ -26,11 +35,6 @@ const PlaceOrderScreen = () => {
     Number((0.15 * orderCart.itemsPrice).toFixed(2))
   );
 
-  // cart.totalPrice = (
-  //   Number(cart.itemsPrice) +
-  //   Number(cart.shippingPrice) +
-  //   Number(cart.taxPrice)
-  // ).toFixed(2);
   orderCart.totalPrice = (
     Number(orderCart.itemsPrice) +
     Number(orderCart.shippingPrice) +
@@ -51,7 +55,7 @@ const PlaceOrderScreen = () => {
       createOrder({
         // comes from cart
         orderItems: cart.cartItems,
-        shippingAddress: cart.shippingAddress,
+        shippingAddress: shippingAddress.address,
         paymentMethod: cart.paymentMethod,
 
         //
@@ -73,9 +77,8 @@ const PlaceOrderScreen = () => {
               <h2>Shipping</h2>
               <p>
                 <strong>Address: </strong>
-                {cart.shippingAddress.address}, {cart.shippingAddress.city},{' '}
-                {cart.shippingAddress.postalCode},{' '}
-                {cart.shippingAddress.country}
+                {shippingAddress.address}, {shippingAddress.city},{' '}
+                {shippingAddress.postalCode}, {shippingAddress.country}
               </p>
             </ListGroup.Item>
 
@@ -87,11 +90,11 @@ const PlaceOrderScreen = () => {
 
             <ListGroup.Item>
               <h2>Order Items</h2>
-              {cart.cartItems.length === 0 ? (
+              {cart.length === 0 ? (
                 <Message>Your cart is empty</Message>
               ) : (
                 <ListGroup variant="flush">
-                  {cart.cartItems.map((item, index) => (
+                  {cart.map((item, index) => (
                     <ListGroup.Item key={index}>
                       <Row>
                         <Col md={1}>

@@ -15,32 +15,28 @@ import Message from '../components/Message';
 import { addToCart, removeFromCart } from '../action/cartAction';
 
 const CartScreen = (props) => {
-  const [cartItems, setCartItems] = useState([]);
-  const params = useParams();
+  // const [cartItems, setCartItems] = useState([]);
 
-  const productId = params.id;
-  console.log();
   const navigate = useNavigate();
-  const { search } = useLocation();
-
   const dispatch = useDispatch();
 
   // const cart = useSelector((state) => state.cart);
   // const { cartItems } = cart;
 
-  // console.log(cart);
-  const sp = new URLSearchParams(search); // /search?category=Shirts=
-  const qty = sp.get('qty') || 0;
+  // const sp = new URLSearchParams(search); // /search?category=Shirts=
+  // const qty = sp.get('qty') || 0;
 
-  useEffect(() => {
-    const cartItems = JSON.parse(localStorage.getItem('cartItems'));
-    if (cartItems) {
-      setCartItems(cartItems);
-    }
-    // if (productId) {
-    //   dispatch(addToCart(productId, qty));
-    // }
-  }, [dispatch, productId, qty, cartItems]);
+  const cartItems = localStorage.getItem('cartItems')
+    ? JSON.parse(localStorage.getItem('cartItems'))
+    : [];
+  // useEffect(() => {
+  //   if (cartItems) {
+  //     setCartItems(cartItems);
+  //   }
+  //   if (productId) {
+  //     dispatch(addToCart(productId, qty));
+  //   }
+  // }, [cartItems]);
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));

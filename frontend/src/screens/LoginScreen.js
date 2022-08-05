@@ -8,6 +8,7 @@ import { login } from '../action/userAction';
 import FormContainer from '../components/FormContainer';
 
 const LoginScreen = () => {
+  // const [userInfo, setUserInfo] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -16,13 +17,16 @@ const LoginScreen = () => {
   const navigate = useNavigate();
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
+  const { loading, error } = userLogin;
 
   const redirect = location.search ? location.search.split('=')[1] : '/';
 
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   useEffect(() => {
     if (userInfo) {
+      // setUserInfo(userInfo);
       navigate(redirect);
+      // navigate('/');
     }
   }, [navigate, userInfo, redirect]);
 
@@ -30,6 +34,8 @@ const LoginScreen = () => {
     e.preventDefault();
     //DISPATCH LOGIN
     dispatch(login(email, password));
+    // setUserInfo(userSignIn)
+    navigate('/');
   };
 
   return (

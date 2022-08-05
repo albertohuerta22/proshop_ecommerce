@@ -2,7 +2,7 @@ import React from 'react';
 // import propTypes from 'prop-types';
 
 const Rating = ({ value, text, color }) => {
-  // console.log(props); props are text, value, color from product component
+  // props are text, value, color from product component
   return (
     <div className="rating">
       <span>
